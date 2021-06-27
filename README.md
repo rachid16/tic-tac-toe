@@ -32,12 +32,12 @@ What is your next move? (1-9)
 
 4
 
-
+`
 O |    | O
 --------------
 X  |    |
 --------------
-O |    | X
+O |    | X      `
 What is your next move? (1-9)
 
 
