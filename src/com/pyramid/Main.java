@@ -47,5 +47,39 @@ public class Main {
                 + " |");
         System.out.println("|---|---|---|");
     }
+
+    static boolean findWinner(String line) {
+
+        if ((table[0] + table[1] + table[2]).equals(line))
+            return true;
+        else if ((table[3] + table[4] + table[5]).equals(line))
+            return true;
+        else if ((table[6] + table[7] + table[8]).equals(line))
+            return true;
+        else if ((table[0] + table[3] + table[6]).equals(line))
+            return true;
+        else if ((table[1] + table[4] + table[7]).equals(line))
+            return true;
+        else if ((table[2] + table[5] + table[8]).equals(line))
+            return true;
+        else if ((table[0] + table[4] + table[8]).equals(line))
+            return true;
+        else if ((table[2] + table[4] + table[6]).equals(line))
+            return true;
+        else
+            return false;
+    }
+    static boolean promptTryAgain () {
+        while (true) {
+            System.out.print("Would you like to start a new game? (Y/N): ");
+            String response = input.next();
+            if (response.equalsIgnoreCase("y")) {
+                return true;
+            } else if (response.equalsIgnoreCase("n")) {
+                return false;
+            }
+            System.out.println("Invalid input.");
+        }
+    }
 }
 
