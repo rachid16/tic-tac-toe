@@ -1,25 +1,36 @@
 package com.pyramid;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static ArrayList<Integer> toUse = new ArrayList<>();
     static Scanner input = new Scanner(System.in);
     static String[] table = new String[9];
+    static String winner ="";
+    static String player = "";
+    static String computer = "";
     public static void main(String[] args) {
-        String winner ="";
-        String player = "X";
+
+
         System.out.println("Welcome to Tic-Tac-Toe!");
-        toUse.addAll(table);
+
         do {
+
+            reset();
+
             System.out.println("Do you want to be X or O?");
             player = input.nextLine().toUpperCase();
-            System.out.println("The computer will go first.");
+            if(player.equals("X"))
+                computer = "O";
+            else
+                computer = "X";
 
-            for (int i= 0; i<9; i++)
-                table[i]=" ";
+            System.out.println("The computer will go first.");
+            int a = computerTurn();
+            table[a-1] = computer;
+            toUse.remove(new Integer(a));
+            printBoard();
+            System.out.println(toUse);
 
             while(winner.equals("")){
 
@@ -31,19 +42,33 @@ public class Main {
                 }
                 else {
                     table[nextMove - 1] = player;
+                    toUse.remove(new Integer(nextMove));
                 }
+
                 printBoard();
-                if(findWinner("XXX"))
-                    winner = "X";
-                else if(findWinner("OOO"))
-                    winner = "O";
+
+                a = computerTurn();
+                table[a-1] = computer;
+                toUse.remove(new Integer(a));
+                printBoard();
+
+                if(findWinner("XXX")){
+                    if(player.equals("X"))
+                        System.out.println("you have beaten the computer! You won.");
+                    else
+                        System.out.println("The computer has beaten you! You lose.");
+                }
+                else if(findWinner("OOO")){
+                    if(player.equals("O"))
+                        System.out.println("you have beaten the computer! You won.");
+                    else
+                        System.out.println("The computer has beaten you! You lose.");
+
+                }
                 else
                     winner ="";
             }
-            if(winner.equals("X") && player.equals("X"))
-                System.out.println("you have beaten the computer! You won.");
-            else
-                System.out.println("The computer has beaten you! You lose.");
+
         }while (promptTryAgain());
 
 
@@ -92,7 +117,7 @@ public class Main {
     static boolean promptTryAgain () {
         while (true) {
             System.out.print("Do you want to play again? (yes or no)");
-            String response = input.next();
+            String response = input.nextLine();
             if (response.equalsIgnoreCase("yes")) {
                 return true;
             } else if (response.equalsIgnoreCase("no")) {
@@ -102,7 +127,26 @@ public class Main {
         }
     }
 
-    static void computerTurn(){
+    static int computerTurn(){
+        int randomElement;
+        do{
+            Random rand = new Random();
+            randomElement = rand.nextInt(9)+1;
+
+        }while(!(toUse.contains(randomElement)));
+
+        return randomElement;
+    }
+    static void reset(){
+        winner ="";
+        player = "";
+        computer = "";
+        for (int i= 0; i<9; i++)
+            table[i]=" ";
+
+        toUse.clear();
+        for (int i=1 ; i<= 9; i++)
+            toUse.add(i);
 
     }
 }
