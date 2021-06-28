@@ -11,7 +11,6 @@ public class Main {
     static String computer = "";
     public static void main(String[] args) {
 
-
         System.out.println("Welcome to Tic-Tac-Toe!");
 
         do {
@@ -30,7 +29,7 @@ public class Main {
             table[a-1] = computer;
             toUse.remove(new Integer(a));
             printBoard();
-            System.out.println(toUse);
+
 
             while(winner.equals("")){
 
@@ -50,28 +49,27 @@ public class Main {
                 a = computerTurn();
                 table[a-1] = computer;
                 toUse.remove(new Integer(a));
-                printBoard();
+
 
                 if(findWinner("XXX")){
                     if(player.equals("X"))
                         System.out.println("you have beaten the computer! You won.");
                     else
                         System.out.println("The computer has beaten you! You lose.");
+                    winner = "X";
                 }
                 else if(findWinner("OOO")){
                     if(player.equals("O"))
                         System.out.println("you have beaten the computer! You won.");
                     else
                         System.out.println("The computer has beaten you! You lose.");
-
+                    winner = "O";
                 }
                 else
                     winner ="";
             }
 
         }while (promptTryAgain());
-
-
 
 
     }
