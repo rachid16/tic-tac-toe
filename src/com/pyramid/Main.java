@@ -14,19 +14,38 @@ public class Main {
         System.out.println("The computer will go first.");
         System.out.println("What is your next move? (1-9)");
         int nextMove = Integer.parseInt(input.nextLine());
+        for (int i= 0; i<9; i++)
+            table[i]=" ";
 
-        if ((table[nextMove-1].equals("X")) || (table[nextMove-1].equals("X"))) {
+        if ((table[nextMove-1].equals("X")) || (table[nextMove-1].equals("O"))) {
             System.out.println("this number already token");
         }
         else {
             table[nextMove - 1] = player;
         }
-
-         
-
+        printBoard();
 
 
 
+
+
+    }
+
+    static void printBoard()
+    {
+        System.out.println("|---|---|---|");
+        System.out.println("| " + table[6] + " | "
+                + table[7] + " | " + table[8]
+                + " |");
+        System.out.println("|-----------|");
+        System.out.println("| " + table[3] + " | "
+                + table[4] + " | " + table[5]
+                + " |");
+        System.out.println("|-----------|");
+        System.out.println("| " + table[0] + " | "
+                + table[1] + " | " + table[2]
+                + " |");
+        System.out.println("|---|---|---|");
     }
 }
 
